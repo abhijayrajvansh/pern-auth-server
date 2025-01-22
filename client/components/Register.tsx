@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
@@ -9,14 +8,13 @@ import Link from "next/link";
 import RegisterForm from "./RegisterForm";
 
 const page = () => {
-  const router = useRouter();
 
   const handleOauthClick = (authProvider: string) => {
     console.log("clicked on:", authProvider);
   };
 
   return (
-    <div className="space-y-5 bg-white p-10 rounded-lg  drop-shadow-lg mb-3">
+    <div className="space-y-5 bg-white p-10 rounded-lg  drop-shadow-lg mt-12">
       <h1 className="text-6xl font-semibold drop-shadow-lg text-center">
         Sign up
       </h1>

@@ -24,6 +24,7 @@ export const register = async (req: Request, res: Response) => {
       msg: "user created",
     });
   } catch (error) {
+    console.error(error);
     return res.status(400).json({
       error: "user with email already exists.",
     });

@@ -1,5 +1,3 @@
-# React Node Auth Server
+# Node, React.Js and PostgreSQL Auth Server
 
 Author: [Abhijay Rajvansh](https://abhijayrajvansh.com)
-
-### native way of authentication using postgres, express, react and node.

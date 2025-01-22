@@ -49,7 +49,7 @@ const page = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>Protected Route Dashboard</p>
       )}
     </div>
   );

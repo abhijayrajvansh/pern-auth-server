@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node dist/index",
     "build": "tsc -p .",
-    "dev": "tsc-watch --onSuccess \"npm run start\""
+    "dev": "tsc-watch --onSuccess \"npm run start\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev --name init"
   },
   "keywords": [],
   "author": "https://abhijayrajvansh.com",
@@ -14,6 +16,7 @@
   "devDependencies": {
     "prisma": "^5.16.1",
     "tsc-watch": "^6.2.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.5.2"
   },
   "dependencies": {

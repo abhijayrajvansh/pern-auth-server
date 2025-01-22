@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -13,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useState } from "react";
 
 const FormSchema = z
   .object({
@@ -35,9 +38,35 @@ export default function InputForm () {
       confirmPassword: "",
     },
   });
+  
+  const router = useRouter();
+  const [error, setError] = useState<null | string>()
+  const [success, setSuccess] = useState<null | string>()
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     console.log(values);
+    
+    try {
+      const res = await axios.post(
+        process.env.NEXT_PUBLIC_API_URL + "/auth/register",
+        values
+      );
+
+      if (res.data.msg) {
+        setError(null);
+        setSuccess(res.data.msg);
+      }
+
+      localStorage.setItem("auth_token", res.data.token);
+
+      // router.push("/login");
+    } 
+    catch (error) {
+      setSuccess(null);
+      setError('bad request');
+      console.error("There was some error:", error);
+    }
   }
 
   return (
@@ -86,6 +115,8 @@ export default function InputForm () {
         />
         
         <Button className="w-full" type="submit">Register</Button>
+        {success && <div className="text-green-500 bg-green-200 p-1 rounded">{success}</div>}
+        {error && <div className="text-red-500 bg-red-200 p-1 rounded">{error}</div>}
       </form>
     </Form>
   );
